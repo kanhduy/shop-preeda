@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Bán Hàng Online</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto text-center">
+      <h1 class="text-3xl font-bold">Shop Nước Giặt Xả Preeda Matic</h1>
+      <p class="mt-2">Chào mừng bạn đến với cửa hàng của chúng tôi shop!</p>
+      <p class="mt-2">Các khách hàng thân yêu có thể đặt hàng theo số lượng lớn </p>
+    </div>
+  </header>
+
+  <!-- Product Section -->
+  <section class="container mx-auto py-8">
+    <h2 class="text-2xl font-semibold mb-6 text-center">Sản Phẩm</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Product 1 -->
+      <div class="bg-white p-4 rounded-lg shadow-md product-card">
+        <img src="images/thương nước hoa pháp.jpg" alt="Preeda hương nước hoa Pháp" class="w-full h-48 object-cover rounded">
+        <h3 class="text-xl font-semibold mt-2">Preeda hướng nước hoa Pháp</h3>
+        <p class="text-gray-600 mt-1">Giá: 150,000 VND/1 tặng 1</p>
+        <button onclick="openOrderForm('Preeda hương nước hoa Pháp', '150,000 VND')" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Đặt Hàng</button>
+      </div>
+      <!-- Product 2 -->
+      <div class="bg-white p-4 rounded-lg shadow-md product-card">
+        <img src="images/Hương cá ngựa.jpg" alt="Preeda hương cá ngựa" class="w-full h-48 object-cover rounded">
+        <h3 class="text-xl font-semibold mt-2">Preeda hướng cá ngựa</h3>
+        <p class="text-gray-600 mt-1">Giá: 150,000 VND/1 tặng 1</p>
+        <button onclick="openOrderForm('Preeda hương nước hoa Pháp', '150,000 VND')" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Đặt Hàng</button>
+      </div>
+      <!-- Product 3 -->
+      <div class="bg-white p-4 rounded-lg shadow-md product-card">
+        <img src="images/hương comfort.jpg" alt="Preeda hướng nước hoa" class="w-full h-48 object-cover rounded">
+        <h3 class="text-xl font-semibold mt-2">Preeda hướng nước hoa comfort</h3>
+        <p class="text-gray-600 mt-1">Giá: 150,000 VND/1 tặng 1</p>
+        <button onclick="openOrderForm('Preeda hướng nước hoa comfort', '150,000 VND')" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Đặt Hàng</button>
+      </div>
+      <!-- Product 4 -->
+      <div class="bg-white p-4 rounded-lg shadow-md product-card">
+        <img src="images/Hương downee.jpg" alt="Preeda hướng nước hoa" class="w-full h-48 object-cover rounded">
+        <h3 class="text-xl font-semibold mt-2">Preeda hướng nước hoa dowmee</h3>
+        <p class="text-gray-600 mt-1">Giá: 150,000 VND/1 tặng 1</p>
+        <button onclick="openOrderForm('Preeda hướng nước hoa', '300,000 VND')" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Đặt Hàng</button>
+    </div>
+  </section>
+
+  <!-- Order Form Modal -->
+  <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg w-full max-w-md">
+      <h2 class="text-2xl font-semibold mb-4">Đặt Hàng</h2>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Sản Phẩm</label>
+        <input id="productName" type="text" readonly class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2">
+      </div>
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-gray-700">Giá</label>
+        <input id="productPrice" type="text" readonly class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2">
+      </div>
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-gray-700">Họ và Tên</label>
+        <input id="customerName" type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" required>
+      </div>
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-gray-700">Số Hotline</label>
+        <input id="customerHotline" type="tel" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" required>
+      </div>
+      <div class="mt-4">
+        <label class="block text-sm font-medium text-gray-700">Địa Chỉ</label>
+        <input id="customerAddress" type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" required>
+      </div>
+      <div class="mt-6 flex justify-end space-x-2">
+        <button onclick="closeOrderForm()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Hủy</button>
+        <button onclick="submitOrder()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Xác Nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg w-full max-w-md">
+      <h2 class="text-2xl font-semibold mb-4">Đặt Hàng Thành Công!</h2>
+      <p>Cảm ơn bạn đã đặt hàng. Chúng tôi sẽ liên hệ sớm nhất có thể.</p>
+      <div class="mt-6 flex justify-end">
+        <button onclick="closeSuccessModal()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize EmailJS with your public key
+    emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Thay YOUR_EMAILJS_PUBLIC_KEY bằng khóa công khai của bạn
+
+    function openOrderForm(productName, productPrice) {
+      document.getElementById('productName').value = productName;
+      document.getElementById('productPrice').value = productPrice;
+      document.getElementById('orderModal').classList.remove('hidden');
+    }
+
+    function closeOrderForm() {
+      document.getElementById('orderModal').classList.add('hidden');
+      clearForm();
+    }
+
+    function clearForm() {
+      document.getElementById('customerName').value = '';
+      document.getElementById('customerHotline').value = '';
+      document.getElementById('customerAddress').value = '';
+    }
+
+    function submitOrder() {
+      const productName = document.getElementById('productName').value;
+      const productPrice = document.getElementById('productPrice').value;
+      const customerName = document.getElementById('customerName').value;
+      const customerHotline = document.getElementById('customerHotline').value;
+      const customerAddress = document.getElementById('customerAddress').value;
+
+      if (!customerName || !customerHotline || !customerAddress) {
+        alert('Vui lòng điền đầy đủ thông tin.');
+        return;
+      }
+
+      // Gửi email thông báo đơn hàng qua EmailJS
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        product_name: productName,
+        product_price: productPrice,
+        customer_name: customerName,
+        customer_hotline: customerHotline,
+        customer_address: customerAddress
+      }).then(() => {
+        document.getElementById('orderModal').classList.add('hidden');
+        document.getElementById('successModal').classList.remove('hidden');
+        clearForm();
+      }, (error) => {
+        alert('Có lỗi xảy ra, vui lòng thử lại.');
+        console.error('EmailJS error:', error);
+      });
+    }
+
+    function closeSuccessModal() {
+      document.getElementById('successModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
